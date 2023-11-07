@@ -3003,6 +3003,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textPontuacao: {fileID: 1408666253}
   panelCentral: {fileID: 1488988171}
+  mudo: {fileID: 251735972}
+  volume: {fileID: 77765315}
 --- !u!1 &2071015795
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class FaseCanvasController : MonoBehaviour
 {
@@ -10,10 +11,22 @@ public class FaseCanvasController : MonoBehaviour
     TextMeshProUGUI textPontuacao;
     [SerializeField]
     GameObject panelCentral;
+    [SerializeField]
+    Toggle mudo;
+    [SerializeField]
+    Slider volume;
 
+    public void SalvarPreferencias()
+    {
+        PlayerPrefs.SetInt("mudo", mudo.isOn ? 1 : 0);
+        PlayerPrefs.SetFloat("volume", volume.value);
+    }
     void Start()
     {
-
+        if (PlayerPrefs.HasKey("mudo"))
+            mudo.isOn = PlayerPrefs.GetInt("mudo") == 1 ? true : false;
+        if (PlayerPrefs.HasKey("volume"))
+            volume.value = PlayerPrefs.GetFloat("volume");
         panelCentral.SetActive(false);
     }
     void Update()
@@ -35,6 +48,7 @@ public class FaseCanvasController : MonoBehaviour
         if (PanelMenuVisivel())
         {
             Time.timeScale = 1;
+            SalvarPreferencias();
         }
         panelCentral.SetActive(!panelCentral.activeSelf);
 
